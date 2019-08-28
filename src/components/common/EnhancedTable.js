@@ -130,8 +130,9 @@ export const EnhancedTable = (props) => {
     let _keys = await Object.keys(obj[0]);
     if (props.options !== undefined)
       if (props.options.ignoreKeys === undefined) {
-        await setKeys(_keys)
-      } else await setKeys(arrayDiff(_keys, props.options.ignoreKeys))
+        await setKeys(_keys);
+      } else await setKeys(arrayDiff(_keys, props.options.ignoreKeys));
+    else await setKeys(_keys);
   }
   useEffect(() => {
     var _tempArray = []
@@ -183,17 +184,24 @@ export const EnhancedTable = (props) => {
       >
         {props.label !== undefined ? props.label : 'Click Me!'}
       </ Button>
-    )
-  }
+    );
+  };
+
+  const breakObject = (obj) => {
+    let _keys = Object.keys(obj);
+    return _keys.map((value) => {
+      return (<Typography key={Math.random()}>{value}: {obj[value]}</Typography>)
+    });
+  };
   const RenderRow = (props) => {
     return props.keys.map((key) => {
       return (<TableCell key={Math.random()}>
         <Typography varient="body1">
-          {String(props.data[key])}
+          {typeof props.data[key] === 'object' ? breakObject(props.data[key]) : String(props.data[key])}
         </Typography>
       </TableCell>)
-    })
-  }
+    });
+  };
   const renderActions = (__obj) => {
     if (props.options.actions !== undefined) {
       return props.options.actions.map(value => {
