@@ -2,7 +2,7 @@
   "visible": true,
   "label": "God Mode",
   "bypassBackend": true,
-  "verticlePosition": "top",
+  "verticlePosition": "bottom",
   "horizontalPosition": "left",
   "devDetails": {
     "user": "sanchit",
